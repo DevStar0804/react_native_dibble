@@ -83,8 +83,8 @@ export default class CustomDrawerSideMenu  extends React.Component  {
 							source={langObj.isRTL ? require("../image/icon_arrow_blue_left.png"): require("../image/icon_arrow_blue_right.png")}
 							resizeMode="contain"
 							style={{
-								width:screenWidth*0.05*(70/139),
-								height:screenWidth*0.05
+								width:screenWidth*0.06,
+								height:screenWidth*0.06
 							}}
 						/>
 					</TouchableOpacity>
@@ -140,8 +140,8 @@ export default class CustomDrawerSideMenu  extends React.Component  {
 							source={langObj.isRTL ? require("../image/icon_arrow_blue_left.png"): require("../image/icon_arrow_blue_right.png")}
 							resizeMode="contain"
 							style={{
-								width:screenWidth*0.05*(70/139),
-								height:screenWidth*0.05
+								width:screenWidth*0.06,
+								height:screenWidth*0.06
 							}}
 						/>
 					</TouchableOpacity>
@@ -153,8 +153,8 @@ export default class CustomDrawerSideMenu  extends React.Component  {
 							source={langObj.isRTL ? require("../image/icon_arrow_blue_left.png"): require("../image/icon_arrow_blue_right.png")}
 							resizeMode="contain"
 							style={{
-								width:screenWidth*0.05*(70/139),
-								height:screenWidth*0.05
+								width:screenWidth*0.06,
+								height:screenWidth*0.06
 							}}
 						/>
 					</TouchableOpacity>
@@ -166,8 +166,8 @@ export default class CustomDrawerSideMenu  extends React.Component  {
 							source={langObj.isRTL ? require("../image/icon_arrow_blue_left.png"): require("../image/icon_arrow_blue_right.png")}
 							resizeMode="contain"
 							style={{
-								width:screenWidth*0.05*(70/139),
-								height:screenWidth*0.05
+								width:screenWidth*0.06,
+								height:screenWidth*0.06
 							}}
 						/>
 					</TouchableOpacity>
@@ -179,8 +179,8 @@ export default class CustomDrawerSideMenu  extends React.Component  {
 							source={langObj.isRTL ? require("../image/icon_arrow_blue_left.png"): require("../image/icon_arrow_blue_right.png")}
 							resizeMode="contain"
 							style={{
-								width:screenWidth*0.05*(70/139),
-								height:screenWidth*0.05
+								width:screenWidth*0.06,
+								height:screenWidth*0.06
 							}}
 						/>
 					</TouchableOpacity>
@@ -192,8 +192,8 @@ export default class CustomDrawerSideMenu  extends React.Component  {
 							source={langObj.isRTL ? require("../image/icon_arrow_blue_left.png"): require("../image/icon_arrow_blue_right.png")}
 							resizeMode="contain"
 							style={{
-								width:screenWidth*0.05*(70/139),
-								height:screenWidth*0.05
+								width:screenWidth*0.06,
+								height:screenWidth*0.06
 							}}
 						/>
 					</TouchableOpacity>

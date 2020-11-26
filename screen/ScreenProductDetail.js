@@ -294,7 +294,7 @@ export default class ProductDetailScreen extends React.Component {
 						</View>
 					</View>
 					<TouchableOpacity
-						style={{marginStart:20, marginEnd: 10, flexDirection: 'row', alignItems:'center'}}
+						style={{ flexDirection: 'row', alignItems:'center'}}
 						onPress={()=>{
 							this.props.navigation.goBack();
 						}}>
@@ -309,8 +309,8 @@ export default class ProductDetailScreen extends React.Component {
 							source={langObj.isRTL ? require("../image/icon_arrow_blue_left.png"): require("../image/icon_arrow_blue_right.png")}
 							resizeMode="contain"
 							style={{
-								width:screenWidth*0.045*(70/139),
-								height:screenWidth*0.045
+								width:screenWidth*0.06,
+								height:screenWidth*0.06
 							}}
 						/>
 					</TouchableOpacity>

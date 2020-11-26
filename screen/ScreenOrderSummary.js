@@ -290,8 +290,8 @@ export default class OrderSummaryScreen extends React.Component {
 							source={langObj.isRTL || isForceRTL ? require("../image/icon_arrow_blue_left.png"): require("../image/icon_arrow_blue_right.png")}
 							resizeMode="contain"
 							style={{
-								width:screenWidth*0.045*(70/139),
-								height:screenWidth*0.045
+								width:screenWidth*0.06,
+								height:screenWidth*0.06
 							}}
 						/>
 					</TouchableOpacity>
