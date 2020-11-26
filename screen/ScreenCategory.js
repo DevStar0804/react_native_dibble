@@ -33,6 +33,7 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 import getLanguage from '../resource/LanguageSupport';
 import {globalStyle} from '../resource/style/GlobalStyle';
+import SearchInput from './comp/SearchInput';
 
 export default class CategoryScreen extends React.Component {
     constructor (props) {
@@ -231,29 +232,12 @@ export default class CategoryScreen extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <View style={{flex:1, flexDirection: 'column'}}>
-                    <View style={{flexDirection:'row', alignItems:'center', width: screenWidth-20, margin:10,
-                            borderColor: c_dark_line, borderRadius:10, borderWidth:0.5, paddingStart:10, paddingEnd:10}}>
-                        <Image
-                            source={require("../image/icon_search.png")}
-                            resizeMode="contain"
-                            style={{
-                                width:screenWidth*0.05,
-                                height:screenWidth*0.05*(153/150),marginEnd:5}}
-                        />
-                        <TextInput
-                            placeholder={langObj.wantToBuy}
-                            style={[globalStyle.textSearch,{flex:1, margin:0,padding:searchTextPadding}]}
-                            value={this.state.searchText}
-                            onSubmitEditing={()=>{
-                                this.props.navigation.navigate(SearchResultScreenName, {
-                                    searchText: this.state.searchText
-                                })
-                            }}
-                            onChangeText={(text)=>{
-                                this.setState({searchText: text})
-                            }}
-                        />
-                    </View>
+                    <SearchInput 
+						wantToBuy = {langObj.wantToBuy} 
+						navigation = {this.props.navigation} 
+						style = {{flexDirection:'row', alignItems:'center', width: screenWidth-20, margin:10,
+							borderColor: c_dark_line, borderRadius:20, borderWidth:0.5, paddingStart:10, paddingEnd:10}}
+					/>
                     <Text style={[globalStyle.textBasicBoldStyle, mStyle.textCategory]}>
                         {this.state.category_name}
                     </Text>
