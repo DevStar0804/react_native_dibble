@@ -32,6 +32,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {searchTextPadding, StatusBarHeight} from '../resource/staus_bar_height';
 import getLanguage from '../resource/LanguageSupport';
 import {globalStyle} from '../resource/style/GlobalStyle';
+import SearchInput from './comp/SearchInput';	
 
 export default class SearchResultScreen extends React.Component {
 	constructor (props) {
@@ -213,18 +214,12 @@ export default class SearchResultScreen extends React.Component {
 					</TouchableOpacity>
 					<View style={{flexDirection:'row', alignItems:'center', flex:1, margin:10,
 						backgroundColor:c_bg_search_box_dark, borderRadius:10, paddingStart:10, paddingEnd:10}}>
-						<TouchableOpacity
-							onPress={()=>{
-								this.startSearch(this.state.next_product_id);
-							}}>
-							<Image
-								source={require("../image/icon_search.png")}
-								resizeMode="contain"
-								style={{
-									width:screenWidth*0.04,
-									height:screenWidth*0.04*(153/150),marginEnd:5}}
-							/>
-						</TouchableOpacity>
+						<SearchInput 
+							wantToBuy={langObj.wantToBuy} 
+							navigation={this.props.navigation} 
+							style={{flexDirection:'row', alignItems:'center', flex:1, margin:10,
+							backgroundColor:'#fff', borderRadius:20, borderWidth:0.5, paddingStart:10, paddingEnd:10}}
+						/>
 						<TextInput
 							style={[globalStyle.textSearch,{flex:1, margin:0,padding:searchTextPadding}]}
 							value={this.state.searchText}
