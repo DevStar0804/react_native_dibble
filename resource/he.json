@@ -84,5 +84,9 @@
 	"save": "שמור",
 	"cancel": "ביטול",
 	"priceUnit": "₪",
+	"home": "דר הבית",
+	"category": "קטגוריוה",
+	"cart": "העגלה שלי",
+	"user": "אזור אישי",
 	"isRTL": true
 }

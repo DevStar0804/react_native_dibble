@@ -18,7 +18,7 @@ import {
 	c_dark_text,
 	c_inactive_dot,
 	c_text_green,
-	CategoryScreenName, isForceRTL, key_user_info, LandingScreenName,
+	CategoryScreenName, isForceRTL, key_user_info, LandingScreenName, HomeScreenName
 } from '../resource/BaseValue';
 import {
 	DrawerContentScrollView,
@@ -76,7 +76,7 @@ export default class CustomDrawerSideMenu  extends React.Component  {
 				<View style={{flex:1, flexDirection:'column', padding:5}}>
 					<TouchableOpacity
 						onPress={()=>{
-							this.props.navigation.closeDrawer();
+							this.props.navigation.navigate(HomeScreenName);
 						}}
 						style={{alignSelf:'flex-end'}}>
 						<Image

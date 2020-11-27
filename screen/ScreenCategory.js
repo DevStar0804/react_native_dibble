@@ -60,8 +60,8 @@ export default class CategoryScreen extends React.Component {
 			// do localization related stuff…
 		});
 		let allState = this.state;
-		allState.category_id = this.props.route.params.category_id;
-		allState.category_name = this.props.route.params.category_name;
+		allState.category_id = this.props.route.params?this.props.route.params.category_id:'1';
+		allState.category_name = this.props.route.params?this.props.route.params.category_name:' ';
 		this.setState(allState, ()=>{
 			this.loadUserInfo();
 		});

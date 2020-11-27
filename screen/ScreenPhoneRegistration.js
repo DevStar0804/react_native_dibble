@@ -9,7 +9,7 @@ import {
 	View,
 	Text,
 	Image, TextInput,
-	Dimensions, ActivityIndicator, Alert, TouchableOpacity, StyleSheet, FlatList, Keyboard, Platform, NativeModules,
+	Dimensions, ActivityIndicator, Alert, TouchableOpacity, StyleSheet, FlatList, Keyboard, Platform, NativeModules, ScrollView
 } from 'react-native';
 import {
 	c_text_green,
@@ -147,12 +147,12 @@ export default class PhoneRegistrationScreen extends React.Component {
 			};
 			AsyncStorage.setItem(key_user_info, JSON.stringify(userInfo))
 				.then(()=>{
-					this.props.navigation.jumpTo(HomeScreenName, {
+					this.props.navigation.navigate(HomeScreenName, {
 						showSideMenu:true
 					})
 				});
 		} catch (e) {
-			this.props.navigation.jumpTo(HomeScreenName);
+			this.props.navigation.navigate(HomeScreenName);
 		}
 	}
 
@@ -175,6 +175,7 @@ export default class PhoneRegistrationScreen extends React.Component {
 
 	render () {
 		return (
+			<ScrollView>
 			<View style={{flex:1, flexDirection:"column", backgroundColor:'#ffffff'}}>
 				<View style={{height: StatusBarHeight}}/>
 				<TouchableOpacity
@@ -342,6 +343,7 @@ export default class PhoneRegistrationScreen extends React.Component {
 					<ActivityIndicator animating={this.state.indicatorDisplay} size="large" color={c_loading_icon} />
 				</View>
 			</View>
+			</ScrollView>
 		);
 	}
 }

@@ -2,7 +2,7 @@
  * @format
  */
 
-import {AppRegistry, I18nManager} from 'react-native';
+import {AppRegistry, I18nManager, Image} from 'react-native';
 import * as React from 'react';
 import {name as appName} from './app.json';
 import 'react-native-gesture-handler';
@@ -12,12 +12,14 @@ import {
   CategoryScreenName,
   SearchResultScreenName,
   ProductDetailScreenName,
+  UserScreenName,
   LandingScreenName,
   PhoneVerificationScreenName,
   PhoneInputScreenName,
   PhoneRegistrationScreenName,
   SmsVerificationScreenName,
   key_current_route_name,
+  key_user_info,
   isForceRTL, OrderSummaryScreenName,
 } from './resource/BaseValue';
 import {NavigationContainer} from '@react-navigation/native';
@@ -38,8 +40,53 @@ import PhoneRegistrationScreen from './screen/ScreenPhoneRegistration';
 import SmsVerificationScreen from './screen/ScreenSmsVerification';
 import AsyncStorage from '@react-native-community/async-storage';
 import OrderSummaryScreen from './screen/ScreenOrderSummary';
+// import { createAppContainer } from 'react-navigation';
+// import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+// import Icon from "react-native-vector-icons/Ionicons";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import getLanguage from './resource/LanguageSupport';
+
+// import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
+const HomeStack = createStackNavigator();
+const LandingStack = createStackNavigator();
+let langObj = getLanguage();
+
+function LandingStackScreen(){
+  return (
+    <LandingStack.Navigator screenOptions={{headerShown: false}}>
+      <LandingStack.Screen name={LandingScreenName} component={LandingScreen} />
+      <LandingStack.Screen name={PhoneInputScreenName} component={PhoneInputScreen} />
+      <LandingStack.Screen name={SmsVerificationScreenName} component={SmsVerificationScreen} />
+      <LandingStack.Screen name={HomeScreenName} component={HomeScreen} />
+      <LandingStack.Screen name={PhoneRegistrationScreenName} component={PhoneRegistrationScreen} />
+    </LandingStack.Navigator>
+  );
+}
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <HomeStack.Screen name={HomeScreenName} component={HomeScreen} />
+      <HomeStack.Screen name={LandingScreenName} component={LandingStackScreen} />
+      <HomeStack.Screen name={ProductDetailScreenName} component={ProductDetailScreen} />
+      <HomeStack.Screen name={SearchResultScreenName} component={SearchResultScreen} />
+      <HomeStack.Screen name={UserScreenName} component={CustomDrawerSideMenu} />
+      <HomeStack.Screen name={OrderSummaryScreenName} component={OrderSummaryScreen} />
+    </HomeStack.Navigator>
+  );
+}
+
+
 
 console.disableYellowBox = true;
 
@@ -51,6 +98,7 @@ function RootApp() {
   }
   const routeNameRef = React.useRef();
   const navigationRef = React.useRef();
+
   return (
     <NavigationContainer
       ref={navigationRef}
@@ -69,9 +117,89 @@ function RootApp() {
         routeNameRef.current = currentRouteName;
         try {
           AsyncStorage.setItem(key_current_route_name, currentRouteName);
+
         } catch (e) {}
       }}>
-      <Drawer.Navigator
+      <Tab.Navigator
+        initialRouteName={SplashScreenName}
+        screenOptions={{
+          headerShown: false,
+          cardOverlayEnabled: false,
+        }}
+        tabBarOptions={{
+          inactiveTintColor: '#000000',
+          activeTintColor: '#ffbb05',
+          activeBackground: '#ffbb05',
+        }}
+      >
+        <Tab.Screen name={SplashScreenName} component={SplashScreen} options={{tabBarVisible: false, tabBarLabel: ''}}/>
+        <Tab.Screen 
+          name={HomeScreenName} 
+          component={HomeStackScreen} 
+          options={({route})=>({
+            tabBarLabel: langObj.home,
+            tabBarIcon: ({focused})=>{
+              if(route.name==='HomeScreenName'){
+                if(focused)
+                  return <Image style={{height:20, width:20}} source={require('./image/dibble_active.png')}/>
+                else
+                  return <Image style={{height:20, width:20}} source={require('./image/dibble.png')}/>
+
+              }
+            },
+          })}
+        />
+        <Tab.Screen 
+          name={CategoryScreenName} 
+          component={CategoryScreen} 
+          options={({route})=>({
+            tabBarLabel: langObj.category,
+            tabBarIcon: ({focused})=>{
+              if(route.name==='CategoryScreenName'){
+                if(focused)
+                  return <Image style={{height:20, width:20}} source={require('./image/category_active.png')}/>
+                else
+                  return <Image style={{height:20, width:20}} source={require('./image/category.png')}/>
+
+              }
+            },
+          })}
+        />
+        <Tab.Screen 
+          name={ProductDetailScreenName} 
+          component={ProductDetailScreen} 
+          options={({route})=>({
+            tabBarLabel: langObj.cart,
+            tabBarIcon: ({focused})=>{
+              if(route.name==='ProductDetailScreenName'){
+                if(focused)
+                  return <Image style={{height:20, width:20}} source={require('./image/cart_active.png')}/>
+                else
+                  return <Image style={{height:20, width:20}} source={require('./image/cart.png')}/>
+
+              }
+            },
+          })}
+        />
+        <Tab.Screen 
+          name={UserScreenName} 
+          component={CustomDrawerSideMenu} 
+          options={({route})=>({
+            tabBarLabel: langObj.user,
+            tabBarIcon: ({focused})=>{
+              if(route.name==='UserScreenName'){
+                if(focused)
+                  return <Image style={{height:20, width:20}} source={require('./image/user_active.png')}/>
+                else
+                  return <Image style={{height:20, width:20}} source={require('./image/user.png')}/>
+
+              }
+            },
+          })}
+        />
+      </Tab.Navigator>
+      
+      {/* <Drawer.Navigator
         screenOptions={{
           headerShown: false,
         }}
@@ -110,7 +238,9 @@ function RootApp() {
           name={OrderSummaryScreenName}
           component={OrderSummaryScreen}
         />
-      </Drawer.Navigator>
+      </Drawer.Navigator> */}
+
+      
     </NavigationContainer>
   );
 }

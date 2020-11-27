@@ -54,7 +54,7 @@ export default class ProductDetailScreen extends React.Component {
 			// do localization related stuff…
 		});
 		let allState = this.state;
-		allState.product_id = this.props.route.params.product_id;
+		allState.product_id = this.props.route.params?this.props.route.params.product_id:28;
 		this.setState(allState, ()=>{
 			this.loadUserInfo();
 		});
@@ -247,7 +247,7 @@ export default class ProductDetailScreen extends React.Component {
 				console.log(responseJson);
 				this._closeLoadingBox();
 				if (responseJson.rc == rc_success){
-					this.props.navigation.jumpTo(OrderSummaryScreenName, {
+					this.props.navigation.navigate(OrderSummaryScreenName, {
 						orderId :responseJson.order_id
 					});
 				} else {

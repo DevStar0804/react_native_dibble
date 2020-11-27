@@ -9,6 +9,7 @@ export const CategoryScreenName = 'CategoryScreenName';
 export const SearchResultScreenName = 'SearchResultScreenName';
 export const ProductDetailScreenName = 'ProductDetailScreenName';
 export const OrderSummaryScreenName = 'OrderSummaryScreenName';
+export const UserScreenName = 'UserScreenName';
 
 export const apiUrl = 'https://staging.dibble.co.il/backend/api/index.php';
 export const rc_success = '0';
@@ -28,7 +29,7 @@ export const rq_add_products_to_order = 'add_products_to_order';
 export const rq_get_my_active_order = 'get_my_active_order';
 export const rq_remove_product_from_order = 'remove_product_from_order';
 export const rq_change_product_amount_in_order =
-	'change_product_amount_in_order';
+  'change_product_amount_in_order';
 export const rq_place_order = 'place_order';
 
 export const c_text_green = '#12d2b3';

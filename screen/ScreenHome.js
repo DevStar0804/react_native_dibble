@@ -24,7 +24,7 @@ import {
 	CategoryScreenName,
 	greyHasOpacity,
 	HomeScreenName, isForceRTL, key_current_route_name,
-	key_user_info, LandingScreenName,
+	key_user_info, LandingScreenName, UserScreenName,
 	rc_success,
 	rq_get_sub_categories,
 	SearchResultScreenName,
@@ -358,7 +358,7 @@ export default class HomeScreen extends React.Component {
 				if (allState.userInfo.token == "") {
 					this.props.navigation.navigate(LandingScreenName);
 				} else {
-					this.props.navigation.openDrawer();
+					this.props.navigation.navigate(UserScreenName);
 				}
 			} else {
 
