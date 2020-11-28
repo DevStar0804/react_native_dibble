@@ -18,12 +18,13 @@ import {
   SearchResultScreenName,
   ProductDetailScreenName,
   UserScreenName,
+  SignUpName,
   LandingScreenName,
   PhoneVerificationScreenName,
   PhoneInputScreenName,
   PhoneRegistrationScreenName,
   SmsVerificationScreenName,
-  key_current_route_name, isForceRTL,
+  key_current_route_name, isForceRTL, key_user_info,
   OrderSummaryScreenName
 } from './resource/BaseValue';
 import {NavigationContainer} from '@react-navigation/native';
@@ -33,8 +34,9 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-// import SplashScreen from './screen/ScreenSplash';
+// import SplashScree from './screen/ScreenSplash';
 import HomeScreen from './screen/ScreenHome';
+import UserScreen from './screen/ScreenUser';
 import CategoryScreen from './screen/ScreenCategory';
 import CustomDrawerSideMenu from './screen/DrawerSideMenu';
 import SearchResultScreen from './screen/ScreenSearchResult';
@@ -52,6 +54,7 @@ import getLanguage from './resource/LanguageSupport';
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
+const UserStack = createStackNavigator();
 const LandingStack = createStackNavigator();
 let langObj = getLanguage();
 
@@ -61,7 +64,6 @@ function LandingStackScreen(){
       <LandingStack.Screen name={LandingScreenName} component={LandingScreen} />
       <LandingStack.Screen name={PhoneInputScreenName} component={PhoneInputScreen} />
       <LandingStack.Screen name={SmsVerificationScreenName} component={SmsVerificationScreen} />
-      <LandingStack.Screen name={HomeScreenName} component={HomeScreen} />
       <LandingStack.Screen name={PhoneRegistrationScreenName} component={PhoneRegistrationScreen} />
     </LandingStack.Navigator>
   );
@@ -84,6 +86,20 @@ function HomeStackScreen() {
   );
 }
 
+function UserStackScreen() {
+  return (
+    <UserStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <UserStack.Screen name={SignUpName} component={UserScreen} />
+      <UserStack.Screen name={UserScreenName} component={CustomDrawerSideMenu} />
+      <UserStack.Screen name={LandingScreenName} component={LandingScreen} />
+    </UserStack.Navigator>
+  );
+}
+
 loadUserInfo = async  () => {
 		try {
 			const value = await AsyncStorage.getItem(key_user_info)
@@ -92,7 +108,6 @@ loadUserInfo = async  () => {
 				this.prepareUserInfo();
 			}
 		} catch(e) {
-			// error reading value
 			this.prepareUserInfo();
 		}
 	}
@@ -103,24 +118,14 @@ prepareUserInfo = async () =>{
       token:""
     };
     AsyncStorage.setItem(key_user_info, JSON.stringify(userInfo))
-      .then(()=>{
-        setTimeout(()=>{
-          this.props.navigation.navigate(HomeScreenName);
-        }, 2000)
-      });
   } catch (e) {
-    setTimeout(()=>{
-      this.props.navigation.navigate(HomeScreenName);
-    }, 2000)
   }
 };
 
 console.disableYellowBox = true;
 
 const App: () => React$Node = () => {
-  React.useEffect(() => {
-    SplashScreen.hide();
-  }, []);
+  
   if (isForceRTL) {
     I18nManager.forceRTL(true);
   } else {
@@ -128,12 +133,18 @@ const App: () => React$Node = () => {
   }
   const routeNameRef = React.useRef();
   const navigationRef = React.useRef();
-
+  React.useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <NavigationContainer
       ref={navigationRef}
       onReady={() =>
-        (routeNameRef.current = navigationRef.current.getCurrentRoute().name)
+        {
+          loadUserInfo();
+          routeNameRef.current = navigationRef.current.getCurrentRoute().name; 
+          
+        }
       }
       onStateChange={() => {
         const previousRouteName = routeNameRef.current;
@@ -147,11 +158,10 @@ const App: () => React$Node = () => {
         routeNameRef.current = currentRouteName;
         try {
           AsyncStorage.setItem(key_current_route_name, currentRouteName);
-          loadUserInfo();R
         } catch (e) {}
       }}>
       <Tab.Navigator
-        initialRouteName={HomeScreenName}
+        initialRouteName={HomeScreen}
         screenOptions={{
           headerShown: false,
           cardOverlayEnabled: false,
@@ -163,7 +173,7 @@ const App: () => React$Node = () => {
           activeBackground: '#ffbb05',
         }}
       >
-        {/* <Tab.Screen name={SplashScreenName} component={SplashScreen} options={{tabBarVisible: false, tabBarLabel: ''}}/> */}
+        {/* <Tab.Screen name={SplashScreenName} component={SplashScree} options={{tabBarVisible: false, tabBarLabel: ''}}/> */}
         <Tab.Screen
           name={HomeScreenName}
           component={HomeStackScreen}
@@ -213,12 +223,12 @@ const App: () => React$Node = () => {
           })}
         />
         <Tab.Screen
-          name={UserScreenName}
-          component={CustomDrawerSideMenu}
+          name={SignUpName}
+          component={UserStackScreen}
           options={({route})=>({
             tabBarLabel: langObj.user,
             tabBarIcon: ({focused})=>{
-              if(route.name==='UserScreenName'){
+              if(route.name==='SignUpName'){
                 if(focused)
                   return <Image style={{height:20, width:20}} source={require('./image/user_active.png')}/>
                 else

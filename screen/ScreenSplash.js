@@ -24,7 +24,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import getLanguage from '../resource/LanguageSupport';
 import {globalStyle} from '../resource/style/GlobalStyle';
 
-export default class SplashScreen extends React.Component {
+export default class SplashScree extends React.Component {
 	constructor (props) {
 		super(props);
 		this.state = ({

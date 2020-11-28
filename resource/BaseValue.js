@@ -10,6 +10,7 @@ export const SearchResultScreenName = 'SearchResultScreenName';
 export const ProductDetailScreenName = 'ProductDetailScreenName';
 export const OrderSummaryScreenName = 'OrderSummaryScreenName';
 export const UserScreenName = 'UserScreenName';
+export const SignUpName = 'SignUpName';
 
 export const apiUrl = 'https://staging.dibble.co.il/backend/api/index.php';
 export const rc_success = '0';
