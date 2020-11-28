@@ -45,15 +45,15 @@ export default class SplashScreen extends React.Component {
 	}
 
 	loadUserInfo = async  () => {
+		this._showLoadingBox();
 		try {
 			const value = await AsyncStorage.getItem(key_user_info)
 			if(value != null) {
 				// value previously stored
-				setTimeout(()=>{
-					this._closeLoadingBox();
+				// setTimeout(()=>{
 					this.props.navigation.jumpTo(HomeScreenName);
 					// this.props.navigation.jumpTo(OrderSummaryScreenName);
-				}, 2000)
+				// }, 100)
 			} else {
 				this.prepareUserInfo();
 			}
@@ -71,14 +71,14 @@ export default class SplashScreen extends React.Component {
 			AsyncStorage.setItem(key_user_info, JSON.stringify(userInfo))
 				.then(()=>{
 					setTimeout(()=>{
-						this._closeLoadingBox();
+						this._showLoadingBox();
 						this.props.navigation.jumpTo(HomeScreenName);
 						// this.props.navigation.jumpTo(OrderSummaryScreenName);
 					}, 2000)
 				});
 		} catch (e) {
 			setTimeout(()=>{
-				this._closeLoadingBox();
+				this._showLoadingBox();
 				this.props.navigation.jumpTo(HomeScreenName);
 				// this.props.navigation.jumpTo(OrderSummaryScreenName);
 			}, 2000)
@@ -104,9 +104,7 @@ export default class SplashScreen extends React.Component {
 
 	render () {
 		return (
-			<View style={
-				{flex:1, flexDirection:"column", alignItems:"center", justifyContent:'center', backgroundColor:c_text_green}}>
-				<Text style={[globalStyle.textBasicBoldStyle,{color:"#ffffff", fontSize:30}]}>{langObj.appName}</Text>
+			<View style={{flex:1, flexDirection:"column", alignItems:"center", justifyContent:'center', backgroundColor:'#ffffff'}}>
 				<View style={{width:this.state.indicatorSizeW, height:this.state.indicatorSizeH, backgroundColor: greyHasOpacity,
 					flexDirection:"column",alignItems:"center", justifyContent:"center", position:"absolute"}}>
 					<ActivityIndicator animating={this.state.indicatorDisplay} size="large" color={c_loading_icon} />
