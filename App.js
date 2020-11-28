@@ -32,7 +32,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import SplashScreen from './screen/ScreenSplash';
+// import SplashScreen from './screen/ScreenSplash';
 import HomeScreen from './screen/ScreenHome';
 import CategoryScreen from './screen/ScreenCategory';
 import CustomDrawerSideMenu from './screen/DrawerSideMenu';
@@ -83,6 +83,36 @@ function HomeStackScreen() {
   );
 }
 
+loadUserInfo = async  () => {
+		try {
+			const value = await AsyncStorage.getItem(key_user_info)
+			if(value != null) {
+			} else {
+				this.prepareUserInfo();
+			}
+		} catch(e) {
+			// error reading value
+			this.prepareUserInfo();
+		}
+	}
+
+	prepareUserInfo = async () =>{
+		try {
+			let userInfo = {
+				token:""
+			};
+			AsyncStorage.setItem(key_user_info, JSON.stringify(userInfo))
+				.then(()=>{
+					setTimeout(()=>{
+						this.props.navigation.navigate(HomeScreenName);
+					}, 2000)
+				});
+		} catch (e) {
+			setTimeout(()=>{
+				this.props.navigation.navigate(HomeScreenName);
+			}, 2000)
+		}
+	}
 
 
 console.disableYellowBox = true;
@@ -114,11 +144,11 @@ const App: () => React$Node = () => {
         routeNameRef.current = currentRouteName;
         try {
           AsyncStorage.setItem(key_current_route_name, currentRouteName);
-
+          loadUserInfo();R
         } catch (e) {}
       }}>
       <Tab.Navigator
-        initialRouteName={SplashScreenName}
+        initialRouteName={HomeScreenName}
         screenOptions={{
           headerShown: false,
           cardOverlayEnabled: false,
@@ -130,7 +160,7 @@ const App: () => React$Node = () => {
           activeBackground: '#ffbb05',
         }}
       >
-        <Tab.Screen name={SplashScreenName} component={SplashScreen} options={{tabBarVisible: false, tabBarLabel: ''}}/>
+        {/* <Tab.Screen name={SplashScreenName} component={SplashScreen} options={{tabBarVisible: false, tabBarLabel: ''}}/> */}
         <Tab.Screen 
           name={HomeScreenName} 
           component={HomeStackScreen} 
