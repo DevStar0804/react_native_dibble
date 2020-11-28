@@ -57,12 +57,6 @@ export default class SearchInput extends React.Component {
               height:screenWidth*0.05*(153/150),marginEnd:5}}
           />
         </TouchableOpacity>
-        <TouchableOpacity
-            onPress={()=>{
-              this.setState({searchText: ''});
-            }}>
-            {close_button}
-        </TouchableOpacity>
         <TextInput
           placeholder={wantToBuy}
           textAlign= { isForceRTL? 'right':'left'}
@@ -84,6 +78,12 @@ export default class SearchInput extends React.Component {
           }}
           selection={ isForceRTL? selection : null } 
         />
+        <TouchableOpacity
+            onPress={()=>{
+              this.setState({searchText: ''});
+            }}>
+            {close_button}
+        </TouchableOpacity>
       </View>
     );
   }

@@ -123,6 +123,7 @@ const App: () => React$Node = () => {
           headerShown: false,
           cardOverlayEnabled: false,
         }}
+        backBehavior='history'
         tabBarOptions={{
           inactiveTintColor: '#000000',
           activeTintColor: '#ffbb05',
