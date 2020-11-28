@@ -23,9 +23,8 @@ import {
   PhoneInputScreenName,
   PhoneRegistrationScreenName,
   SmsVerificationScreenName,
-  key_current_route_name,
-  key_user_info,
-  isForceRTL, OrderSummaryScreenName,
+  key_current_rout  isForceRTL,
+  OrderSumm  isForceRTL, OrderSummaryScreenName,
 } from './resource/BaseValue';
 import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
@@ -72,7 +71,7 @@ function HomeStackScreen() {
   return (
     <HomeStack.Navigator
       screenOptions={{
-        headerShown: false
+        headerShown: false,
       }}
     >
       <HomeStack.Screen name={HomeScreenName} component={HomeScreen} />
@@ -98,29 +97,28 @@ loadUserInfo = async  () => {
 		}
 	}
 
-	prepareUserInfo = async () =>{
-		try {
-			let userInfo = {
-				token:""
-			};
-			AsyncStorage.setItem(key_user_info, JSON.stringify(userInfo))
-				.then(()=>{
-					setTimeout(()=>{
-						this.props.navigation.navigate(HomeScreenName);
-					}, 2000)
-				});
-		} catch (e) {
-			setTimeout(()=>{
-				this.props.navigation.navigate(HomeScreenName);
-			}, 2000)
-		}
-	}
-
+prepareUserInfo = async () =>{
+  try {
+    let userInfo = {
+      token:""
+    };
+    AsyncStorage.setItem(key_user_info, JSON.stringify(userInfo))
+      .then(()=>{
+        setTimeout(()=>{
+          this.props.navigation.navigate(HomeScreenName);
+        }, 2000)
+      });
+  } catch (e) {
+    setTimeout(()=>{
+      this.props.navigation.navigate(HomeScreenName);
+    }, 2000)
+  }
+};
 
 console.disableYellowBox = true;
 
 const App: () => React$Node = () => {
-  React.useEffect(()=>{
+  React.useEffect(() => {
     SplashScreen.hide();
   }, []);
   if (isForceRTL) {
@@ -166,9 +164,9 @@ const App: () => React$Node = () => {
         }}
       >
         {/* <Tab.Screen name={SplashScreenName} component={SplashScreen} options={{tabBarVisible: false, tabBarLabel: ''}}/> */}
-        <Tab.Screen 
-          name={HomeScreenName} 
-          component={HomeStackScreen} 
+        <Tab.Screen
+          name={HomeScreenName}
+          component={HomeStackScreen}
           options={({route})=>({
             tabBarLabel: langObj.home,
             tabBarIcon: ({focused})=>{
@@ -182,9 +180,9 @@ const App: () => React$Node = () => {
             },
           })}
         />
-        <Tab.Screen 
-          name={CategoryScreenName} 
-          component={CategoryScreen} 
+        <Tab.Screen
+          name={CategoryScreenName}
+          component={CategoryScreen}
           options={({route})=>({
             tabBarLabel: langObj.category,
             tabBarIcon: ({focused})=>{
@@ -198,9 +196,9 @@ const App: () => React$Node = () => {
             },
           })}
         />
-        <Tab.Screen 
-          name={ProductDetailScreenName} 
-          component={ProductDetailScreen} 
+        <Tab.Screen
+          name={ProductDetailScreenName}
+          component={ProductDetailScreen}
           options={({route})=>({
             tabBarLabel: langObj.cart,
             tabBarIcon: ({focused})=>{
@@ -214,9 +212,9 @@ const App: () => React$Node = () => {
             },
           })}
         />
-        <Tab.Screen 
-          name={UserScreenName} 
-          component={CustomDrawerSideMenu} 
+        <Tab.Screen
+          name={UserScreenName}
+          component={CustomDrawerSideMenu}
           options={({route})=>({
             tabBarLabel: langObj.user,
             tabBarIcon: ({focused})=>{
@@ -231,7 +229,7 @@ const App: () => React$Node = () => {
           })}
         />
       </Tab.Navigator>
-      
+
       {/* <Drawer.Navigator
         screenOptions={{
           headerShown: false,
@@ -273,7 +271,7 @@ const App: () => React$Node = () => {
         />
       </Drawer.Navigator> */}
 
-      
+
     </NavigationContainer>
   );
 }
