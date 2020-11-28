@@ -71,14 +71,14 @@ export default class SplashScreen extends React.Component {
 			AsyncStorage.setItem(key_user_info, JSON.stringify(userInfo))
 				.then(()=>{
 					setTimeout(()=>{
-						this._showLoadingBox();
+						this._closeLoadingBox();
 						this.props.navigation.jumpTo(HomeScreenName);
 						// this.props.navigation.jumpTo(OrderSummaryScreenName);
 					}, 2000)
 				});
 		} catch (e) {
 			setTimeout(()=>{
-				this._showLoadingBox();
+				this._closeLoadingBox();
 				this.props.navigation.jumpTo(HomeScreenName);
 				// this.props.navigation.jumpTo(OrderSummaryScreenName);
 			}, 2000)
