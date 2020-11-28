@@ -8,10 +8,11 @@
 
 import {AppRegistry, I18nManager, Image} from 'react-native';
 import * as React from 'react';
+// import {useEffect} from 'react';
 import {name as appName} from './app.json';
 import 'react-native-gesture-handler';
 import {
-  SplashScreenName,
+  // SplashScreenName,
   HomeScreenName,
   CategoryScreenName,
   SearchResultScreenName,
@@ -27,6 +28,7 @@ import {
   isForceRTL, OrderSummaryScreenName,
 } from './resource/BaseValue';
 import {NavigationContainer} from '@react-navigation/native';
+import SplashScreen from 'react-native-splash-screen';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -118,6 +120,9 @@ loadUserInfo = async  () => {
 console.disableYellowBox = true;
 
 const App: () => React$Node = () => {
+  React.useEffect(()=>{
+    SplashScreen.hide();
+  }, []);
   if (isForceRTL) {
     I18nManager.forceRTL(true);
   } else {
