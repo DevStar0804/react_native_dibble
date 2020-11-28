@@ -23,7 +23,7 @@ import {
   PhoneInputScreenName,
   PhoneRegistrationScreenName,
   SmsVerificationScreenName,
-  key_current_rout  isForceRTL,
+  key_current_rout,  isForceRTL,
   OrderSumm  isForceRTL, OrderSummaryScreenName,
 } from './resource/BaseValue';
 import {NavigationContainer} from '@react-navigation/native';
