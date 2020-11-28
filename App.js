@@ -23,8 +23,8 @@ import {
   PhoneInputScreenName,
   PhoneRegistrationScreenName,
   SmsVerificationScreenName,
-  key_current_rout,  isForceRTL,
-  OrderSumm  isForceRTL, OrderSummaryScreenName,
+  key_current_route_name, isForceRTL,
+  OrderSummaryScreenName
 } from './resource/BaseValue';
 import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
