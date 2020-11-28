@@ -44,16 +44,9 @@ import PhoneRegistrationScreen from './screen/ScreenPhoneRegistration';
 import SmsVerificationScreen from './screen/ScreenSmsVerification';
 import AsyncStorage from '@react-native-community/async-storage';
 import OrderSummaryScreen from './screen/ScreenOrderSummary';
-// import { createAppContainer } from 'react-navigation';
-// import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-// import Icon from "react-native-vector-icons/Ionicons";
-import Icon from 'react-native-vector-icons/FontAwesome';
 import getLanguage from './resource/LanguageSupport';
-
-// import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
