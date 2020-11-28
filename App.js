@@ -32,7 +32,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import SplashScreen from './screen/ScreenSpash';
+import SplashScreen from './screen/ScreenSplash';
 import HomeScreen from './screen/ScreenHome';
 import CategoryScreen from './screen/ScreenCategory';
 import CustomDrawerSideMenu from './screen/DrawerSideMenu';
